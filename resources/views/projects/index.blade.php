@@ -1,13 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Dashboard')
+
+@section('content')
+
     <h1>Dashboard</h1>
 
     <ul>
@@ -19,5 +15,4 @@
             <li>No projects yet.</li>
         @endforelse
     </ul>
-</body>
-</html>
+@endsection
