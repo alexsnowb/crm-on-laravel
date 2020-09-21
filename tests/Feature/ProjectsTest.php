@@ -55,18 +55,60 @@ class ProjectsTest extends TestCase
         $this->post('/dashboard/projects', $attributes)->assertRedirect('/login');
     }
 
-    /** @test **/
-    public function can_user_view_project()
+    /** @test */
+    public function only_auth_users_can_view_project()
     {
-        $this->actingAs(User::factory()->create());
+        $attributes = Project::factory()->raw();
+        $this->post('/dashboard/projects', $attributes)->assertRedirect('/login');
+    }
 
+    /** @test */
+    public function guest_cannot_create_project()
+    {
+        $attributes = Project::factory()->raw();
+        $this->post('/dashboard/projects', $attributes)->assertRedirect('/login');
+    }
 
+    /** @test */
+    public function guest_cannot_view_projects()
+    {
+        $this->get('/dashboard/projects')->assertRedirect('/login');
+    }
+
+    /** @test */
+    public function guest_cannot_view_project()
+    {
         $project = Project::factory()->create();
+        $this->get($project->path())->assertRedirect('/login');
+    }
 
-        $this->get('/dashboard/projects/'. $project->id)
+    /** @test **/
+    public function can_user_view_his_project()
+    {
+
+        $this->be(User::factory()->create());
+
+        $project = Project::factory()->create(['owner_id' => auth()->id()]);
+
+        $this->get($project->path())
             ->assertStatus(200)
             ->assertSee($project->title)
             ->assertSee($project->description);
 
     }
+
+    /** @test **/
+    public function cannot_auth_user_view_not_his_project()
+    {
+
+        $this->be(User::factory()->create());
+
+        $project = Project::factory()->create();
+
+        $this->get($project->path())
+            ->assertStatus(403)
+        ;
+
+    }
+
 }
