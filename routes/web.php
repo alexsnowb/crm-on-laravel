@@ -19,7 +19,8 @@ Route::get('/', function () {
 });
 
 Route::resource('/dashboard/projects', ProjectsController::class)
-    ->middleware(['auth:sanctum', 'verified']);
+    ->middleware(['auth:sanctum', 'verified'])
+;
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
