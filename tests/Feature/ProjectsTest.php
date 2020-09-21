@@ -12,21 +12,17 @@ class ProjectsTest extends TestCase
 {
     use withFaker, RefreshDatabase;
 
-//    /** @test */
-//    public function can_user_registration(){
-//        $user = User::factory()->create();
-//        $this->assertDatabaseHas('users', ['id' => $user->id, 'email'=> $user->email]);
-//    }
-
     /** @test **/
     public function can_user_create_project()
     {
+        $this->withoutExceptionHandling();
+
+        $this->actingAs(User::factory()->create());
+
         $attributes = [
             'title'         => $this->faker->sentence,
             'description'   => $this->faker->paragraph
         ];
-
-        $this->actingAs(User::factory()->create());
 
         $this->post('/dashboard/projects', $attributes)->assertRedirect('/dashboard/projects');
         $this->assertDatabaseHas('projects', $attributes);
