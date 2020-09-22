@@ -67,6 +67,7 @@ class ProjectsTest extends TestCase
     /** @test */
     public function guest_cannot_create_project()
     {
+        $this->get('/dashboard/projects/create')->assertRedirect('/login');
         $attributes = Project::factory()->raw();
         $this->post('/dashboard/projects', $attributes)->assertRedirect('/login');
     }
@@ -95,8 +96,9 @@ class ProjectsTest extends TestCase
         $this->get($project->path())
             ->assertStatus(200)
             ->assertSee($project->title)
-            ->assertSee($project->description);
-
+            ->assertSee($project->description)
+            ->assertSee($project->owner->name)
+        ;
     }
 
     /** @test **/
