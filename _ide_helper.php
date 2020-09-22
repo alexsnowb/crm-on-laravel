@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 8.1.0.
+ * Generated for Laravel 8.5.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -6701,6 +6701,8 @@
             /**
      * 
      *
+     * @method static void write(string $level, string $message, array $context = [])
+     * @method static void listen(\Closure $callback)
      * @see \Illuminate\Log\Logger
      */ 
         class Log {
@@ -6934,6 +6936,10 @@
             /**
      * 
      *
+     * @method static mixed laterOn(string $queue, \DateTimeInterface|\DateInterval|int $delay, \Illuminate\Contracts\Mail\Mailable|string|array $view)
+     * @method static mixed queueOn(string $queue, \Illuminate\Contracts\Mail\Mailable|string|array $view)
+     * @method static void plain(string $view, array $data, $callback)
+     * @method static void html(string $html, $callback)
      * @see \Illuminate\Mail\Mailer
      * @see \Illuminate\Support\Testing\Fakes\MailFake
      */ 
@@ -12205,6 +12211,17 @@
                         $instance->setPreviousUrl($url);
         }
                     /**
+         * Specify that the user has confirmed their password.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function passwordConfirmed()
+        {
+                        /** @var \Illuminate\Session\Store $instance */
+                        $instance->passwordConfirmed();
+        }
+                    /**
          * Get the underlying session handler implementation.
          *
          * @return \SessionHandlerInterface 
@@ -16787,6 +16804,20 @@ namespace  {
             }
              
                 /**
+             * Add a subquery cross join to the query.
+             *
+             * @param \Closure|\Illuminate\Database\Query\Builder|string $query
+             * @param string $as
+             * @return \Illuminate\Database\Query\Builder 
+             * @static 
+             */ 
+            public static function crossJoinSub($query, $as)
+            {
+                                /** @var \Illuminate\Database\Query\Builder $instance */
+                                return $instance->crossJoinSub($query, $as);
+            }
+             
+                /**
              * Merge an array of where clauses and bindings.
              *
              * @param array $wheres
@@ -17039,7 +17070,7 @@ namespace  {
                 /**
              * Add a where between statement to the query.
              *
-             * @param string $column
+             * @param string|\Illuminate\Database\Query\Expression $column
              * @param array $values
              * @param string $boolean
              * @param bool $not
@@ -18097,7 +18128,7 @@ namespace  {
             }
              
                 /**
-             * Insert a new record into the database.
+             * Insert new records into the database.
              *
              * @param array $values
              * @return bool 
@@ -18110,7 +18141,7 @@ namespace  {
             }
              
                 /**
-             * Insert a new record into the database while ignoring errors.
+             * Insert new records into the database while ignoring errors.
              *
              * @param array $values
              * @return int 

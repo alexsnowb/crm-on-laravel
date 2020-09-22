@@ -15,9 +15,11 @@ class ProjectsTest extends TestCase
     /** @test **/
     public function can_user_create_project()
     {
-        $this->withoutExceptionHandling();
-
         $this->actingAs(User::factory()->create());
+
+        $this->get('/dashboard/projects/create')
+            ->assertStatus(200)
+            ;
 
         $attributes = [
             'title'         => $this->faker->sentence,
