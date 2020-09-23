@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\Project\Create;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class ProjectsTest extends TestCase
@@ -113,6 +115,25 @@ class ProjectsTest extends TestCase
             ->assertStatus(403)
         ;
 
+    }
+
+    /** @test  */
+    function is_redirected_to_posts_page_after_creation()
+    {
+        $this->withoutExceptionHandling();
+        $this->actingAs(User::factory()->create());
+
+        $project = Project::factory()->make();
+
+        Livewire::test(Create::class)
+            ->set('project.title', $project->title)
+            ->set('project.description', $project->description)
+            ->call('createProject')
+            ->assertRedirect('/dashboard/projects')
+        ;
+
+        $project->owner_id = auth()->user()->id;
+        $this->assertDatabaseHas('projects', $project->toArray());
     }
 
 }

@@ -18,9 +18,9 @@ class Create extends Component
     public function createProject()
     {
         $validatedData = $this->validate();
-        $project = auth()->user()->projects()->create($validatedData['project']);
+        auth()->user()->projects()->create($validatedData['project']);
         session()->flash('message', 'Post successfully create.');
-        return redirect()->to($project->path());
+        return redirect()->to('/dashboard/projects');
     }
 
     public function render()
