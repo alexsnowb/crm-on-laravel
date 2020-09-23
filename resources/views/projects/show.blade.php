@@ -50,12 +50,10 @@
                         </div>
                     </dl>
                 </div>
-                <div class="flex p-1">
-                    <div class="inline-flex rounded-md shadow mx-auto">
-                        <a href="{{ $project->path() }}/edit/" class="items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                            Edit
-                        </a>
-                    </div>
+                <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
+                    <a href="{{ $project->path() }}/edit/" class="items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150  justify-end">
+                        {{__('Edit Project')}}
+                    </a>
                 </div>
             </div>
 
