@@ -39,4 +39,16 @@ class ProjectsController extends Controller
         return view('projects.show', compact('project'));
 
     }
+
+    public function edit()
+    {
+        $project = Project::findOrFail(\request('project'));
+
+        if(auth()->user()->isNot($project->owner)) {
+            abort(403);
+        }
+
+        return view('projects.edit', compact('project'));
+
+    }
 }

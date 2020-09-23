@@ -32,7 +32,7 @@
                                 {{ $project->title }}
                             </dd>
                         </div>
-                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm leading-5 font-medium text-gray-500">
                                 Description
                             </dt>
@@ -49,6 +49,13 @@
                             </dd>
                         </div>
                     </dl>
+                </div>
+                <div class="flex p-1">
+                    <div class="inline-flex rounded-md shadow mx-auto">
+                        <a href="{{ $project->path() }}/edit/" class="items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                            Edit
+                        </a>
+                    </div>
                 </div>
             </div>
 

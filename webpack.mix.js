@@ -13,6 +13,12 @@ const mix = require('laravel-mix');
 
 mix
   .js('resources/js/app.js', 'public/js')
+  .styles(
+      [
+        'public/css/alerts.css'
+      ],
+      'public/css/custom.css'
+  )
   .postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),
     require('tailwindcss'),
