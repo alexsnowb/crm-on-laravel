@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire\Project;
 
+use App\Models\Project;
 use Livewire\Component;
 
 class Edit extends Component
 {
 
+    /** @var Project */
     public $project;
 
     protected $rules = [
@@ -16,15 +18,13 @@ class Edit extends Component
 
     public function editProject()
     {
-        $validatedData = $this->validate();
-        auth()->user()->projects()->create($validatedData['project']);
+        $this->validate();
+        $this->project->save();
+        $this->redirect($this->project->path());
     }
 
     public function render()
     {
-
-        //dd(request());
-
         return view('livewire.project.edit');
     }
 }
