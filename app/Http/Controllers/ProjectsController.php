@@ -8,9 +8,7 @@ use App\Models\Project;
 class ProjectsController extends Controller
 {
     public function index() {
-        $projects = auth()->user()->projects;
-
-        return view('projects.index', compact('projects'));
+        return view('projects.index');
     }
 
     public function create() {
