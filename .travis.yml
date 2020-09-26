@@ -4,6 +4,7 @@ language: php
 env:
   global:
     - SETUP=stable
+    - CC_TEST_REPORTER_ID=4c3edcc1d4f186c875a15af9919c10f74055f7525c08c12a6d5fc60dcb281beb
 
 matrix:
   fast_finish: true
@@ -31,9 +32,18 @@ before_install:
   - php artisan key:generate
   - php artisan migrate --seed
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 install:
   - if [[ $SETUP = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest; fi
   - if [[ $SETUP = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable --no-suggest; fi
 
 script:
   - vendor/bin/phpunit
+  - bundle exec rspec
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
