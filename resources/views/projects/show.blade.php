@@ -1,13 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Projects') }}
-        </h2>
-        <div>
-            <a href="/dashboard/projects/create" class="text-blue-500 hover:text-blue-800" >
-                {{ __('Create') }}
-            </a>
-        </div>
+        @livewire('project.header')
     </x-slot>
 
     <div>
