@@ -153,4 +153,20 @@ class ProjectsTest extends TestCase
             ->assertSee($projectList[0]->owner->name);
     }
 
+    /** @test  */
+    function can_search()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $projectList = Project::factory()
+            ->count(21)
+            ->create(['owner_id' => \Auth::id()]);
+
+        Livewire::test(Index::class)
+            ->set('searchTerm', $projectList[0]->title)
+            ->assertSee($projectList[0]->title)
+            ->assertSee($projectList[0]->description)
+            ->assertSee($projectList[0]->owner->name);
+    }
+
 }
