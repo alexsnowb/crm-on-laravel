@@ -18,6 +18,7 @@ class Index extends Component
         return view('livewire.project.index', [
             'projects' => Project::where('owner_id', Auth::id())
                 ->where('title','like', '%'.$this->searchTerm.'%')
+                ->orderBy('id', 'desc')
                 ->paginate(10)
         ]);
     }

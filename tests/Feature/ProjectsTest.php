@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Livewire\Project\Create;
+use App\Http\Livewire\Project\Index;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -120,7 +121,6 @@ class ProjectsTest extends TestCase
     /** @test  */
     function is_redirected_to_posts_page_after_creation()
     {
-        $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create());
 
         $project = Project::factory()->make();
@@ -134,6 +134,23 @@ class ProjectsTest extends TestCase
 
         $project->owner_id = auth()->user()->id;
         $this->assertDatabaseHas('projects', $project->toArray());
+    }
+
+    /** @test  */
+    function can_paginate()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $projectList = Project::factory()
+            ->count(21)
+            ->create(['owner_id' => \Auth::id()]);
+
+        Livewire::test(Index::class)
+            ->call('gotoPage', '3')
+            ->assertStatus(200)
+            ->assertSee($projectList[0]->title)
+            ->assertSee($projectList[0]->description)
+            ->assertSee($projectList[0]->owner->name);
     }
 
 }
