@@ -52,4 +52,24 @@ class Project extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    /**
+     * @param Task $task
+     * @return mixed
+     */
+    public function addTask(Task $task)
+    {
+
+        dd($task);
+        return $this->tasks()->create(compact($task));
+    }
 }

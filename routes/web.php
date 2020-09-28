@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ProjectTasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,10 @@ Route::get('/', function () {
 });
 
 Route::resource('/dashboard/projects', ProjectsController::class)
+    ->middleware(['auth:sanctum', 'verified'])
+;
+
+Route::resource('/dashboard/projects/{project}/tasks', ProjectTasksController::class)
     ->middleware(['auth:sanctum', 'verified'])
 ;
 

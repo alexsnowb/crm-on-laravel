@@ -21,7 +21,7 @@ class ProjectsController extends Controller
             'description' => 'required',
         ]);
 
-        auth()->user()->projects()->create($attributes);
+        \Auth::user()->projects()->create($attributes);
 
         return redirect('/dashboard/projects');
     }
@@ -30,7 +30,7 @@ class ProjectsController extends Controller
     {
         $project = Project::findOrFail(\request('project'));
 
-        if(auth()->user()->isNot($project->owner)) {
+        if(\Auth::user()->isNot($project->owner)) {
             abort(403);
         }
 
@@ -42,7 +42,7 @@ class ProjectsController extends Controller
     {
         $project = Project::findOrFail(\request('project'));
 
-        if(auth()->user()->isNot($project->owner)) {
+        if(\Auth::user()->isNot($project->owner)) {
             abort(403);
         }
 
