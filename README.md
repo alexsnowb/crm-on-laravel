@@ -2,6 +2,7 @@
 
 <p align="center">
 <a href="https://travis-ci.org/alexsnowb/crm-on-laravel"><img src="https://travis-ci.org/alexsnowb/crm-on-laravel.svg?branch=master" alt="Build Status"></a>
+<a href="https://codeclimate.com/github/alexsnowb/crm-on-laravel/maintainability"><img src="https://api.codeclimate.com/v1/badges/77e54ebb1bd64aece60f/maintainability" /></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
