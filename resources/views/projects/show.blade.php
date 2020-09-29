@@ -47,13 +47,7 @@
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
                                 @forelse($project->tasks as $task)
-                                    @if($loop->first)
-                                        <ul>
-                                    @endif
-                                            <li>{{ $task->title }}</li>
-                                    @if($loop->last)
-                                        </ul>
-                                    @endif
+                                    <div class="card mb-3">{{ $task->title }}</div>
                                 @empty
                                     No tasks yet
                                 @endforelse

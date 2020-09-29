@@ -3,14 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use Illuminate\Http\Request;
+use App\Models\Task;
 
 class ProjectTasksController extends Controller
 {
     public function store(Project $project)
     {
-        $project->addTask(\request('body'));
+        \request()->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
 
+        $task = new Task([
+            'title' => \request('title'),
+            'description' => \request('description')
+        ]);
+
+        $project->addTask($task);
         return redirect($project->path());
     }
 }
