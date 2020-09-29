@@ -26,6 +26,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read \App\Models\User $owner
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Task[] $tasks
+ * @property-read int|null $tasks_count
  */
 class Project extends Model
 {
