@@ -11,9 +11,7 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $searchTerm;
     public $project;
-    public $tasks;
 
     public $newTaskTitle;
 
@@ -33,13 +31,15 @@ class Index extends Component
 
     }
 
-    public function render(Project $project)
+    public function render()
     {
+        $tasks = Task::where('project_id', $this->project->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10)
+        ;
+
         return view('livewire.project.task.index', [
-            'tasks' => Task::where('project_id', $project->id)
-                ->where('title','like', '%'.$this->searchTerm.'%')
-                ->orderBy('id', 'desc')
-                ->paginate(10)
+            'tasks' => $tasks
         ]);
     }
 }

@@ -21,11 +21,12 @@
             Task list
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            @forelse($project->tasks as $task)
+            @forelse($tasks as $task)
                 <div class="card mb-3">{{ $task->title }}</div>
             @empty
                 No tasks yet
             @endforelse
+            {{ $tasks->links() }}
         </dd>
     </div>
 </div>
