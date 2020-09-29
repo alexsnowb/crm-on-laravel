@@ -70,6 +70,7 @@ class Project extends Model
      */
     public function addTask(Task $task)
     {
+        $task->project_id = $this->id;
         return $this->tasks()->save($task);
     }
 }

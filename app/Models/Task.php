@@ -32,8 +32,19 @@ class Task extends Model
 
     protected $guarded = [];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    /**
+     * @return string
+     */
+    public function path()
+    {
+        return $this->project->path().'/tasks/'.$this->id;
     }
 }
