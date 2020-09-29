@@ -68,8 +68,6 @@ class Project extends Model
      */
     public function addTask(Task $task)
     {
-
-        dd($task);
-        return $this->tasks()->create(compact($task));
+        return $this->tasks()->save($task);
     }
 }
