@@ -1778,16 +1778,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.2.5",
+            "version": "v2.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "ffaa43e02e9b9ae56c8ae16a438b48844f6e9147"
+                "reference": "cddda1536c3c1d3b3a7e57eb471cf9ba57117f37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/ffaa43e02e9b9ae56c8ae16a438b48844f6e9147",
-                "reference": "ffaa43e02e9b9ae56c8ae16a438b48844f6e9147",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/cddda1536c3c1d3b3a7e57eb471cf9ba57117f37",
+                "reference": "cddda1536c3c1d3b3a7e57eb471cf9ba57117f37",
                 "shasum": ""
             },
             "require": {
@@ -1839,7 +1839,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-18T13:55:17+00:00"
+            "time": "2020-09-29T13:53:53+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
