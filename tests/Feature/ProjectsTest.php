@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Http\Livewire\Project\Create;
 use App\Http\Livewire\Project\Index;
 use App\Models\Project;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -18,7 +19,7 @@ class ProjectsTest extends TestCase
     /** @test **/
     public function can_user_create_project()
     {
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
 
         $this->get('/dashboard/projects/create')
             ->assertStatus(200)
@@ -92,7 +93,7 @@ class ProjectsTest extends TestCase
     public function can_user_view_his_project()
     {
 
-        $this->be(User::factory()->create());
+        $this->signIn();
 
         $project = Project::factory()->create(['owner_id' => auth()->id()]);
 
