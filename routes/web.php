@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\ProjectTasksController;
+use App\Http\Controllers\TeamsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,10 @@ Route::resource('/dashboard/projects', ProjectsController::class)
 
 Route::resource('/dashboard/projects/{project}/tasks', ProjectTasksController::class)
     ->middleware(['auth:sanctum', 'verified'])
+;
+
+Route::resource('/dashboard/teams', TeamsController::class)
+    //->middleware(['auth:sanctum', 'verified'])
 ;
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
