@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\ShowProduct;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\ProjectTasksController;
@@ -29,7 +30,7 @@ Route::resource('/dashboard/projects/{project}/tasks', ProjectTasksController::c
 ;
 
 Route::resource('/dashboard/teams', TeamsController::class)
-    //->middleware(['auth:sanctum', 'verified'])
+    ->middleware(['auth:sanctum', 'verified'])
 ;
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
