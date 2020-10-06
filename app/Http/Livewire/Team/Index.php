@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Team;
 
 use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Jetstream\Jetstream;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,11 +16,13 @@ class Index extends Component
 
     public function render()
     {
+
+        $teams = Auth::user()
+            ->allTeams()
+        ;
+
         return view('livewire.team.index', [
-            'teams' => Team::where('user_id', Auth::id())
-                ->where('name','like', '%'.$this->searchTerm.'%')
-                ->orderBy('id', 'desc')
-                ->paginate(10)
+            'teams' => $teams
         ]);
     }
 }
