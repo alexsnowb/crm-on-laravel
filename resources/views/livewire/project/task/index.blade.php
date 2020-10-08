@@ -22,7 +22,14 @@
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             @forelse($tasks as $task)
-                <div class="card mb-3">{{ $task->title }}</div>
+                <div class="card mb-3">{{ $task->title }}
+                    <input id="task-id-{{ $task->id }}"
+                           value="{{ $task->title }}"
+                           wire:keydown.enter="updateTask({{ $task->id }})"
+                           wire:model.defer="updatedTaskTitle"
+                           wire:key="{{ $task->id }}"
+                    />
+                </div>
             @empty
                 No tasks yet
             @endforelse
